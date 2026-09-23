@@ -82,7 +82,7 @@ dsh plugin --profile <profile> remove dsh-voice-local
 
 The head-of-utterance processing (leading-aspiration trimming, breath-head attenuation and the
 adaptive window) lives in the separate zero-dependency package
-[`wav-head-trim`](https://github.com/an94/wav-head-trim), declared here as
+[`wav-head-trim`](https://github.com/an94-code/wav-head-trim), declared here as
 `"wav-head-trim": "^1.0.0"`.
 
 > ⚠️ If `wav-head-trim` is **not published to npm** yet, a plain `pnpm add` of this plugin cannot

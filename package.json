@@ -38,11 +38,11 @@
     "author": "an94",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/an94/dsh-voice-local.git"
+        "url": "git+https://github.com/an94-code/dsh-voice-local.git"
     },
-    "homepage": "https://github.com/an94/dsh-voice-local#readme",
+    "homepage": "https://github.com/an94-code/dsh-voice-local#readme",
     "bugs": {
-        "url": "https://github.com/an94/dsh-voice-local/issues"
+        "url": "https://github.com/an94-code/dsh-voice-local/issues"
     },
     "engines": {
         "node": "^22.19.0 || >=24.0.0"
