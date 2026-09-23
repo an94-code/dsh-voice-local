@@ -1,6 +1,6 @@
 ﻿{
     "name": "dsh-voice-local",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "DSH plugin: start a local Whisper STT server alongside DeepSeek Harness and synthesise speech offline with a local GPT-SoVITS server (voice cloning, zero cloud, zero API keys).",
     "type": "module",
     "main": "lib/index.js",
@@ -35,7 +35,7 @@
         "offline"
     ],
     "license": "MIT",
-    "author": "an94",
+    "author": "an94-code",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/an94-code/dsh-voice-local.git"

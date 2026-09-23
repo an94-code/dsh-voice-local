@@ -1,4 +1,4 @@
-﻿# dsh-voice-local
+# dsh-voice-local
 
 A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH) plugin that gives you a
 **fully local, offline speech stack**: it can bring up a Whisper STT server together with DSH and it
@@ -56,14 +56,14 @@ works:
 
 ```bash
 # from a git repository
-dsh plugin --profile <profile> add github:<user>/dsh-voice-local
+dsh plugin --profile <profile> add github:an94-code/dsh-voice-local
 
 # from a release tarball
-dsh plugin --profile <profile> add https://codeload.github.com/<user>/dsh-voice-local/tar.gz/refs/tags/v1.0.0
+dsh plugin --profile <profile> add https://codeload.github.com/an94-code/dsh-voice-local/tar.gz/refs/tags/v1.0.1
 
 # from a local checkout or a packed tarball
 dsh plugin --profile <profile> add ./path/to/dsh-voice-local
-dsh plugin --profile <profile> add ./dsh-voice-local-1.0.0.tgz
+dsh plugin --profile <profile> add ./dsh-voice-local-1.0.1.tgz
 ```
 
 Then **restart DSH** — plugins are loaded at boot. A successful load logs:
@@ -300,7 +300,6 @@ not covered.
 
 ## 12. Licence
 
-[MIT](./LICENSE) © an94 — see `LICENSE`.
+[MIT](./LICENSE) © an94-code — see `LICENSE`.
 
-No third-party voice, audio or preset data is included in this repository. Replace the
-`an94` / `an94` placeholders with your own values before publishing.
+No third-party voice, audio or preset data is included in this repository.
