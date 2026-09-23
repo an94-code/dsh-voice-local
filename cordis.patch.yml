@@ -1,0 +1,75 @@
+# dsh-voice-local — local (offline) speech for DeepSeek Harness. Zero cloud, zero API keys.
+#
+# 1. Optionally starts a local Whisper STT server together with DSH (default
+#    127.0.0.1:9000). The server is a child of the host process, so it lives and
+#    dies with DSH — no scheduled task and no Windows service.
+# 2. Registers voice_tts_local: text -> local GPT-SoVITS server (default
+#    127.0.0.1:9880) for offline voice cloning.
+#
+# Nothing in here points at a machine-specific path. A path left empty can be
+# supplied through the matching environment variable instead (the key name is
+# noted next to each option), otherwise the plugin simply reports what is
+# missing at run time.
+#
+# Reference audio (measured): 3–10 seconds of clean single-speaker audio. Longer
+# clips are rejected by the TTS server with HTTP 400.
+#
+# `presets` is a plain list; one entry is one named voice. Each entry needs both
+# `id` and `refAudioPath` — everything else is optional. Fill it in with your own
+# recordings, e.g.
+#
+#   presets:
+#     - id: 'zh'
+#       label: 'Chinese · calm'
+#       emotion: 'calm'
+#       refAudioPath: 'C:\my-voices\zh-calm.wav'
+#       promptText: 'the exact transcript of that clip'
+#       promptLang: 'zh'
+#       textLang: 'zh'
+#     - id: 'ja'
+#       label: 'Japanese · calm'
+#       emotion: 'calm'
+#       refAudioPath: 'C:\my-voices\ja-calm.wav'
+#       promptText: 'そのクリップの発話内容をそのまま'
+#       promptLang: 'ja'
+#       textLang: 'ja'
+#
+# Keep the list empty (`presets: []`) to always use the default voice below.
+- insert:
+    - id: voice-local
+      name: 'dsh-voice-local'
+      config:
+        # —— local Whisper STT (optional auto-start) ——
+        sttEnable: true
+        sttCmd: ''                        # starting command, e.g. 'C:\whisper-server\start-whisper.cmd' · env DSH_VOICE_LOCAL_STT_CMD
+        sttHealthUrl: 'http://127.0.0.1:9000/health'
+        sttWaitMs: 60000
+        # —— local GPT-SoVITS TTS (optional auto-start) ——
+        ttsEnable: true
+        ttsBaseUrl: 'http://127.0.0.1:9880'
+        ttsCmd: ''                        # starting command, e.g. 'C:\GPT-SoVITS\start-api.cmd' · env DSH_VOICE_LOCAL_TTS_CMD
+        ttsWaitMs: 180000
+        # —— default voice: you must configure this one yourself ——
+        refAudioPath: ''                  # 3–10 s clean single-speaker clip · env DSH_VOICE_LOCAL_REF_AUDIO
+        promptText: ''                    # the exact transcript of that clip
+        promptLang: 'zh'
+        textLang: 'zh'
+        mediaType: 'wav'
+        textSplitMethod: 'cut5'
+        timeoutMs: 300000
+        # —— output: every write stays inside this directory ——
+        outputDir: ''                     # empty = <system temp>\dsh-voice-local · env DSH_VOICE_LOCAL_OUTPUT_DIR
+        autoPlay: false
+        outFormat: 'wav'                  # wav | mp3 (mp3 needs ffmpegPath)
+        ffmpegPath: ''                    # only used for outFormat: mp3 · env DSH_VOICE_LOCAL_FFMPEG
+        powershellPath: ''                # playback helper; empty = <SystemRoot>\System32\WindowsPowerShell\v1.0\powershell.exe · env DSH_VOICE_LOCAL_POWERSHELL
+        # —— head-of-utterance processing (see README + wav-head-trim) ——
+        trimAspiration: true
+        trimRiseMin: 0.30
+        headAttenuateEnable: true
+        headAttenuateAdaptive: true
+        headAttenuateMs: 300
+        headAttenuateDb: -15
+        headAttenuateRelDb: 6
+        # —— named voices: add your own entries here (see the header comment) ——
+        presets: []

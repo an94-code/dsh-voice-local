@@ -1,0 +1,60 @@
+﻿{
+    "name": "dsh-voice-local",
+    "version": "1.0.0",
+    "description": "DSH plugin: start a local Whisper STT server alongside DeepSeek Harness and synthesise speech offline with a local GPT-SoVITS server (voice cloning, zero cloud, zero API keys).",
+    "type": "module",
+    "main": "lib/index.js",
+    "exports": {
+        ".": {
+            "default": "./lib/index.js"
+        },
+        "./cordis.patch.yml": "./cordis.patch.yml",
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "lib",
+        "cordis.patch.yml",
+        "README.md",
+        "LICENSE"
+    ],
+    "dsh": {
+        "bundle": {
+            "patch": "./cordis.patch.yml"
+        }
+    },
+    "keywords": [
+        "dsh",
+        "deepseek-harness",
+        "plugin",
+        "tts",
+        "stt",
+        "whisper",
+        "gpt-sovits",
+        "voice-cloning",
+        "local",
+        "offline"
+    ],
+    "license": "MIT",
+    "author": "an94",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/an94/dsh-voice-local.git"
+    },
+    "homepage": "https://github.com/an94/dsh-voice-local#readme",
+    "bugs": {
+        "url": "https://github.com/an94/dsh-voice-local/issues"
+    },
+    "engines": {
+        "node": "^22.19.0 || >=24.0.0"
+    },
+    "os": [
+        "win32"
+    ],
+    "scripts": {
+        "test": "node --test",
+        "compare": "node tools/compare-with-original.mjs"
+    },
+    "dependencies": {
+        "wav-head-trim": "^1.0.0"
+    }
+}
